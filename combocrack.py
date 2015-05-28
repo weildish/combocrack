@@ -14,7 +14,6 @@ smtp_user = "username" #Your SMTP account username
 smtp_pass = "Pass1234" #Your SMTP account password
 start = 10000 #The beginning of the range of combinations you want to try. Currently only supports between 10000 and 99999
 end = 19999 #The end of the range of combinations you want to try. Currently only supports between 10001 and 99999
-#DO NOT EDIT BELOW THIS LINE (UNLESS YOU KNOW WHAT YOU'RE DOING... WHICH, IF YOU'RE TRYING TO CRACK A SAFE, YOU'RE EITHER AN OVERCONFIDENT KID OR YOU KNOW WHAT YOU'RE DOING
 #######FUNCTIONS#######
 def check_combo():
 	global combo
@@ -36,7 +35,7 @@ def check_combo():
 					#COMBO TRIED
 					print combo+" has already been attempted. Moving on to another combination."
 					found = True
-			if not found:
+			if not found: #Could have shortened this section by using classes. Too late now.
 				print "Attempting combination "+combo
 				#DEFINE EACH DIGIT OF COMBINATION
 				c0 = str(combo)[0]
