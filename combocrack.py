@@ -12,8 +12,8 @@ from_address = "fromemail@email.com" #The email address from which you're sendin
 smtp_server = "smtp.email.com" #The SMTP server you're using-- if you have an account at Gmail, you will probably be able to send using that server and account
 smtp_user = "username" #Your SMTP account username
 smtp_pass = "Pass1234" #Your SMTP account password
-start = 10000 #The beginning of the range of combinations you want to try. Currently only supports between 10000 and 99999
-end = 19999 #The end of the range of combinations you want to try. Currently only supports between 10001 and 99999
+first = 0 #The beginning of the range of combinations you want to try. Currently only supports between 0 and 99999
+last = 99999 #The end of the range of combinations you want to try. Currently only supports between 1 and 99999
 #######FUNCTIONS#######
 def check_combo():
 	global combo
@@ -28,6 +28,7 @@ def check_combo():
 			print "Reboot complete. Continuing crack."
 			attempt = 0
 		combo = str(random.randint(first,last))
+		combo = combo.zfill(5) #Added to support trying combinations beginning with one or more zeroes
 		with open("combolist.db") as database:
 			found = False
 			for line in database:
@@ -410,5 +411,6 @@ GPIO.setup(24, GPIO.OUT, initial=0) #1,4,7 source
 GPIO.setup(10, GPIO.OUT, initial=0) #2,5,8,0 source
 GPIO.setup(9, GPIO.OUT, initial=0) #3,6,9 source
 GPIO.setup(8, GPIO.OUT, initial=1) #POWER FOR MAIN BOARD
-GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) #TEST IF SAFE IS UNLOCKED
+GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) #TO TEST IF SAFE IS UNLOCKED
+#######START CRACKING PROCESS#######
 check_combo()
